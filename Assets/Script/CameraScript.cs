@@ -28,5 +28,6 @@ public class CameraScript : MonoBehaviour
         }
         direction=new Vector3(transform.rotation.x,transform.rotation.y,transform.rotation.z);
     }
+
 }
 
