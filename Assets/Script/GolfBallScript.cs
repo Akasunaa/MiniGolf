@@ -7,6 +7,7 @@ public class GolfBallScript : MonoBehaviour
     [SerializeField] float force;
     private Rigidbody rb;
     private GameObject camera;
+    private GameObject floor;
 
     private void Awake()
     {
@@ -16,11 +17,16 @@ public class GolfBallScript : MonoBehaviour
     private void Update()
     {
         camera=GameObject.FindGameObjectWithTag("Camera");
+        floor=GameObject.FindGameObjectWithTag("Floor");
         if(Input.GetKeyDown("space"))
         {
             Putting();
         }
         if (Input.GetKeyDown("r"))
+        {
+            Die();
+        }
+        if(transform.position.y<floor.transform.position.y-20)
         {
             Die();
         }
