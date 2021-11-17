@@ -30,6 +30,10 @@ public class GolfBallScript : MonoBehaviour
         {
             Die();
         }
+        if(rb.velocity.magnitude < 4)
+        {
+            rb.velocity=new Vector3(0,0,0);
+        }
     }
 
     private void Putting()
