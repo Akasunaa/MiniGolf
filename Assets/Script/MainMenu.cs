@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public Button SelectLevelButton;
     public Button ReturnButton;
     public Button Level1Button;
+    public Button Level2Button;
+    public Button Level3Button;
 
     public GameObject mainMenuContainer;
     public GameObject levelSelectContainer;
@@ -22,7 +24,9 @@ public class MainMenu : MonoBehaviour
         StartButton.onClick.AddListener(StartGame);
         SelectLevelButton.onClick.AddListener(SelectLevel);
         ReturnButton.onClick.AddListener(Return);
-        Level1Button.onClick.AddListener(SelectLevel);
+        Level1Button.onClick.AddListener(StartLevel1);
+        Level2Button.onClick.AddListener(StartLevel2);
+        Level3Button.onClick.AddListener(StartLevel3);
         mainMenuContainer = GameObject.Find("MainMenuContainer") as GameObject;
         levelSelectContainer = GameObject.Find("SelectLevelContainer") as GameObject;
         //gameMenuContainer = GameObject.Find("ModeCamera").gameObject;
@@ -30,6 +34,19 @@ public class MainMenu : MonoBehaviour
         levelSelectContainer.SetActive(false);
 
 
+    }
+    //faites comme si vous n'aviez rien vu, je vais corriger ça
+    private void StartLevel1()
+    {
+        SceneManager.LoadScene(1);
+    }
+    private void StartLevel2()
+    {
+        SceneManager.LoadScene(2);
+    }
+    private void StartLevel3()
+    {
+        SceneManager.LoadScene(3);
     }
     private void StartGame()
     {
@@ -48,6 +65,9 @@ public class MainMenu : MonoBehaviour
         mainMenuContainer.SetActive(true);
         levelSelectContainer.SetActive(false);
     }
+
+    
+
 
 
 }
