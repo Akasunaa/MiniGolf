@@ -20,10 +20,20 @@ public class GolfBallScript : MonoBehaviour
         {
             Putting();
         }
+        if (Input.GetKeyDown("r"))
+        {
+            Die();
+        }
     }
 
     private void Putting()
     {
         rb.AddForce(camera.transform.forward.normalized*Force);
+    }
+
+    public void Die()
+    {
+        FindObjectOfType<StartManager>().StartPlayerRespawn();
+        Destroy(gameObject);
     }
 }
