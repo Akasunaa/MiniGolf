@@ -6,6 +6,7 @@ public class GolfBallScript : MonoBehaviour
 {
     [SerializeField] float Force;
     private Rigidbody rb;
+    private GameObject camera;
 
     private void Awake()
     {
@@ -14,6 +15,7 @@ public class GolfBallScript : MonoBehaviour
 
     private void Update()
     {
+        camera=GameObject.FindGameObjectWithTag("Camera");
         if(Input.GetKeyDown("space"))
         {
             Putting();
@@ -22,6 +24,6 @@ public class GolfBallScript : MonoBehaviour
 
     private void Putting()
     {
-        rb.AddForce(new Vector3(10,0,0).normalized*Force);
+        rb.AddForce(camera.transform.forward.normalized*Force);
     }
 }
