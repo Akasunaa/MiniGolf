@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GolfBallScript : MonoBehaviour
 {
-    [SerializeField] float Force;
+    [SerializeField] float force;
     private Rigidbody rb;
     private GameObject camera;
 
@@ -28,7 +28,7 @@ public class GolfBallScript : MonoBehaviour
 
     private void Putting()
     {
-        rb.AddForce(camera.transform.forward.normalized*Force);
+        rb.AddForce(camera.transform.forward.normalized*force);
     }
 
     public void Die()
