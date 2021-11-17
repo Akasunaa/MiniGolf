@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class HoleManager : MonoBehaviour
 {
-    void Update()
-    {
-        
-    }
+    [SerializeField] int sceneToLoad;
+    private IEnumerator coroutine;
 
-    void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if ((collision.gameObject.tag == "Player"))
         {
-            Debug.Log("gg bro");
-
+            Debug.Log("Victory !");
+            coroutine = ChangeScene();
+            StartCoroutine(coroutine);
         }
+    }
+
+    private IEnumerator ChangeScene()
+    {
+            yield return null;
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneToLoad);
     }
 }

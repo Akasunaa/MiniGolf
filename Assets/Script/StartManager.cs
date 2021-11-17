@@ -8,6 +8,7 @@ public class StartManager : MonoBehaviour
     [SerializeField] GameObject Player;
     private GameObject floor;
     private float yFloor;
+    
     private void Start()
     {
         //GameObject Player = GameObject.FindGameObjectWithTag("Player");
