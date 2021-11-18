@@ -6,6 +6,7 @@ public class HoleManager : MonoBehaviour
 {
     [SerializeField] int sceneToLoad;
     private IEnumerator coroutine;
+    [SerializeField] int time;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -19,7 +20,11 @@ public class HoleManager : MonoBehaviour
 
     private IEnumerator ChangeScene()
     {
-            yield return null;
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneToLoad);
+        Fader fader = FindObjectOfType<Fader>();
+        yield return fader.FadeOut(time);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneToLoad);
+        yield return fader.FadeIn(time);
+        
+            
     }
 }
