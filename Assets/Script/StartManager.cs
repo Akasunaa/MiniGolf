@@ -8,7 +8,10 @@ public class StartManager : MonoBehaviour
     [SerializeField] GameObject Player;
     private GameObject floor;
     private float yFloor;
-    
+    private Fader fader;
+    [SerializeField] float time;
+   
+
     private void Start()
     {
         //GameObject Player = GameObject.FindGameObjectWithTag("Player");
@@ -22,9 +25,14 @@ public class StartManager : MonoBehaviour
 
     private IEnumerator RespawnPlayer()
     {
-        yield return null;
+        print("respawwwn");
+
+        Fader fader = FindObjectOfType<Fader>();
+        yield return fader.FadeOut(time);
         Instantiate(Player, spawn, Quaternion.identity);
-        
+
+        yield return fader.FadeIn(time);
+
     }
 
 

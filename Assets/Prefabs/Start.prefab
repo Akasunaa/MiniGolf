@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 3099879892053149445, guid: 22c5075c8e4aac148b27ca2daea0717f, type: 3}
+  time: 1
