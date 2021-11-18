@@ -17,6 +17,8 @@ public class MainMenu : MonoBehaviour
 
     public GameObject mainMenuContainer;
     public GameObject levelSelectContainer;
+    [SerializeField] Fader fader;
+    [SerializeField] float time;
 
 
     private void Start()
@@ -50,8 +52,10 @@ public class MainMenu : MonoBehaviour
     }
     private void StartGame()
     {
-        SceneManager.LoadScene(1);
-        
+        print("puteuh");
+        //SceneManager.LoadScene(1);
+        fader.StartTransition(2, time);
+
     }
 
     private void SelectLevel()

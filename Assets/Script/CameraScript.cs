@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    private GameObject player;
+    //private GameObject player;
     private Vector3 offset;
     public Vector3 direction;
+    GameObject player;
 
     public void Start () 
     {
@@ -17,8 +18,10 @@ public class CameraScript : MonoBehaviour
     private void Update()
     {
         player=GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            return;
         //transform.position = player.transform.position + offset;
-        if(Input.GetKey("q"))
+        if (Input.GetKey("q"))
         {
             transform.RotateAround(player.transform.position,Vector3.up,-5);
         }
