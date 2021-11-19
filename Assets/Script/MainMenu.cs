@@ -33,6 +33,19 @@ public class MainMenu : MonoBehaviour
 
 
     }
+    //faites comme si vous n'aviez rien vu, je vais corriger ça
+    private void StartLevel1()
+    {
+        SceneManager.LoadScene(1);
+    }
+    private void StartLevel2()
+    {
+        SceneManager.LoadScene(2);
+    }
+    private void StartLevel3()
+    {
+        SceneManager.LoadScene(3);
+    }
     private void StartGame()
     {
         //print("puteuh");
