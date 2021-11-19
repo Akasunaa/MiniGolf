@@ -8,6 +8,11 @@ public class GolfBallScript : MonoBehaviour
     private Rigidbody rb;
     private GameObject camera;
     private GameObject floor;
+    [SerializeField] private Vector2 jump = new Vector2(0, 5);
+
+    //jump if is moving
+
+    private bool isMoving;
 
     private void Awake()
     {
@@ -15,15 +20,37 @@ public class GolfBallScript : MonoBehaviour
         GameObject start = GameObject.FindWithTag("Respawn");
         print(start);
         transform.position = start.transform.position;
+        isMoving = false;
+
     }
 
     private void Update()
     {
-        camera=GameObject.FindGameObjectWithTag("Camera");
+        if (transform.hasChanged)
+        {
+            isMoving = true;
+            transform.hasChanged = false;
+
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        camera =GameObject.FindGameObjectWithTag("Camera");
         floor=GameObject.FindGameObjectWithTag("Floor");
         if(Input.GetKeyDown("space"))
         {
-            Putting();
+            print(isMoving);
+            if (isMoving){
+                Jump();
+                print("jump");
+            }
+            else {
+                Putting();
+                print("putting");
+            }
+            
         }
         if (Input.GetKeyDown("r"))
         {
@@ -49,4 +76,11 @@ public class GolfBallScript : MonoBehaviour
         FindObjectOfType<StartManager>().StartPlayerRespawn();
         Destroy(gameObject);
     }
+
+    private void Jump()
+    {
+        rb.velocity = jump;
+    }
+
+    
 }
