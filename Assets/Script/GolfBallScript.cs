@@ -12,6 +12,9 @@ public class GolfBallScript : MonoBehaviour
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
+        GameObject start = GameObject.FindWithTag("Respawn");
+        print(start);
+        transform.position = start.transform.position;
     }
 
     private void Update()

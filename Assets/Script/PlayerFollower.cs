@@ -6,8 +6,9 @@ public class PlayerFollower : MonoBehaviour
 {
     GameObject player;
     // Update is called once per frame
-    private void Start()
+    private void Awake()
     {
+        
         
     }
     void Update()

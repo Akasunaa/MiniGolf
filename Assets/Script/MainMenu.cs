@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Button StartButton;
-
-    
     public Button SelectLevelButton;
     public Button ReturnButton;
-    public Button Level1Button;
+    public Button QuitButton;
+
+
 
     public GameObject mainMenuContainer;
     public GameObject levelSelectContainer;
@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
         StartButton.onClick.AddListener(StartGame);
         SelectLevelButton.onClick.AddListener(SelectLevel);
         ReturnButton.onClick.AddListener(Return);
-        Level1Button.onClick.AddListener(SelectLevel);
+        QuitButton.onClick.AddListener(Quit);
         mainMenuContainer = GameObject.Find("MainMenuContainer") as GameObject;
         levelSelectContainer = GameObject.Find("SelectLevelContainer") as GameObject;
         //gameMenuContainer = GameObject.Find("ModeCamera").gameObject;
@@ -35,9 +35,9 @@ public class MainMenu : MonoBehaviour
     }
     private void StartGame()
     {
-        print("puteuh");
+        //print("puteuh");
         //SceneManager.LoadScene(1);
-        fader.StartTransition(2, time);
+        fader.StartTransition(1, time);
 
     }
 
@@ -52,6 +52,12 @@ public class MainMenu : MonoBehaviour
         mainMenuContainer.SetActive(true);
         levelSelectContainer.SetActive(false);
     }
+
+    void Quit()
+    {
+        Application.Quit();
+    }
+
 
 
 }
