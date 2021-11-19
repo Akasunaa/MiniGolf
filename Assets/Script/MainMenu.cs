@@ -68,6 +68,7 @@ public class MainMenu : MonoBehaviour
 
     void Quit()
     {
+        print("oki");
         Application.Quit();
     }
 
