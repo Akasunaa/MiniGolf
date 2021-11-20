@@ -19,7 +19,6 @@ public class GolfBallScript : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody>();
         GameObject start = GameObject.FindWithTag("Respawn");
-        print(start);
         transform.position = start.transform.position;
         isMoving = false;
         canJump = false;
@@ -31,12 +30,10 @@ public class GolfBallScript : MonoBehaviour
         if (rb.velocity.magnitude >0.1f)
         {
             isMoving = true;
-            print("moving");
         }
         else
         {
             isMoving = false;
-            print("not moving");
         }
 
         camera =GameObject.FindGameObjectWithTag("Camera");
@@ -46,11 +43,14 @@ public class GolfBallScript : MonoBehaviour
             if (isMoving && canJump)
             {
                 Jump();
-                print("jump");
+                print("ismoving and canjump");
             }
             else if (!isMoving) {
                 Putting();
-                print("putting");
+                print("notmoving ");
+            }
+            else {
+                print("ismoving and notjump");
             }
             
         }
@@ -85,12 +85,13 @@ public class GolfBallScript : MonoBehaviour
         canJump = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
 
         if ((collision.gameObject.tag == "Floor"))
         {
             canJump = true;
+            print("WOAAAAA");
         }
 
     }
