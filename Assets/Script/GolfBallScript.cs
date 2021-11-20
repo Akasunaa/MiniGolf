@@ -8,11 +8,12 @@ public class GolfBallScript : MonoBehaviour
     private Rigidbody rb;
     private GameObject camera;
     private GameObject floor;
-    [SerializeField] private Vector2 jump = new Vector2(0, 5);
+    [SerializeField] private Vector3 jump = new Vector3(0, 5,0);
 
     //jump if is moving
 
     private bool isMoving;
+    private bool canJump;
 
     private void Awake()
     {
@@ -21,32 +22,33 @@ public class GolfBallScript : MonoBehaviour
         print(start);
         transform.position = start.transform.position;
         isMoving = false;
+        canJump = false;
 
     }
 
     private void Update()
     {
-        if (transform.hasChanged)
+        if (rb.velocity.magnitude >0.1f)
         {
             isMoving = true;
-            transform.hasChanged = false;
-
+            print("moving");
         }
         else
         {
             isMoving = false;
+            print("not moving");
         }
 
         camera =GameObject.FindGameObjectWithTag("Camera");
         floor=GameObject.FindGameObjectWithTag("Floor");
         if(Input.GetKeyDown("space"))
         {
-            print(isMoving);
-            if (isMoving){
+            if (isMoving && canJump)
+            {
                 Jump();
                 print("jump");
             }
-            else {
+            else if (!isMoving) {
                 Putting();
                 print("putting");
             }
@@ -79,8 +81,19 @@ public class GolfBallScript : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = jump;
+        rb.velocity += jump;
+        canJump = false;
     }
 
-    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if ((collision.gameObject.tag == "Floor"))
+        {
+            canJump = true;
+        }
+
+    }
+
+
 }
