@@ -6,72 +6,55 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button StartButton;
-    public Button SelectLevelButton;
-    public Button ReturnButton;
-    public Button QuitButton;
-
-
-
-    public GameObject mainMenuContainer;
-    public GameObject levelSelectContainer;
-    [SerializeField] Fader fader;
-    [SerializeField] float time;
-
+    private GameObject mainContainer;
+    private GameObject levelSelectCont;
+    private GameObject fader;
 
     private void Start()
     {
-        StartButton.onClick.AddListener(StartGame);
-        SelectLevelButton.onClick.AddListener(SelectLevel);
-        ReturnButton.onClick.AddListener(Return);
-        QuitButton.onClick.AddListener(Quit);
-        mainMenuContainer = GameObject.Find("MainMenuContainer") as GameObject;
-        levelSelectContainer = GameObject.Find("SelectLevelContainer") as GameObject;
-        //gameMenuContainer = GameObject.Find("ModeCamera").gameObject;
-        mainMenuContainer.SetActive(true);
-        levelSelectContainer.SetActive(false);
-
-
-    }
-    //faites comme si vous n'aviez rien vu, je vais corriger ça
-    private void StartLevel1()
-    {
-        SceneManager.LoadScene(1);
-    }
-    private void StartLevel2()
-    {
-        SceneManager.LoadScene(2);
-    }
-    private void StartLevel3()
-    {
-        SceneManager.LoadScene(3);
-    }
-    private void StartGame()
-    {
-        //print("puteuh");
-        //SceneManager.LoadScene(1);
-        fader.StartTransition(1, time);
-
+        levelSelectCont=GameObject.Find("SelectLevelContainer").gameObject;
+        mainContainer=GameObject.Find("MainMenuContainer").gameObject;
+        levelSelectCont.SetActive(false);
+        fader = GameObject.Find("Fader").gameObject;
     }
 
-    private void SelectLevel()
+    //-------------------------------------------------
+    //For the buttons that launch a level
+    private IEnumerator coroutine;
+
+    public void LaunchLevelRoutine(int levelNum)
     {
-        levelSelectContainer.SetActive(true);
-        mainMenuContainer.SetActive(false);
+        coroutine=LaunchLevel(levelNum);
+        StartCoroutine(coroutine);
     }
 
-    private void Return()
+    private IEnumerator LaunchLevel(int levelNum)
     {
-        mainMenuContainer.SetActive(true);
-        levelSelectContainer.SetActive(false);
+        fader.transform.GetChild(0).GetComponent<Fader>().StartTransition(levelNum,2f);
+        yield return null;
     }
 
-    void Quit()
+    //-------------------------------------------------
+    //For Button Select Levels :
+    public void SelectLevels()
     {
-        print("oki");
+        levelSelectCont.gameObject.SetActive(true);
+        GameObject.Find("MainMenuContainer").SetActive(false);
+    }
+
+    //-------------------------------------------------
+    //For the return button :
+    public void ReturnMainMenu()
+    {
+        mainContainer.gameObject.SetActive(true);
+        GameObject.Find("SelectLevelContainer").SetActive(false);
+    }
+
+    //-------------------------------------------------
+    //For the quit button:
+    public void Quit()
+    {
         Application.Quit();
+        Debug.Log("quit");
     }
-
-
-
 }

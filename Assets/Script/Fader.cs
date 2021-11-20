@@ -14,7 +14,7 @@ public class Fader : MonoBehaviour
 
     void Awake()
     {
-        spriteRendererColor = gameObject.GetComponent<Image>().color;
+        spriteRendererColor = GetComponent<Image>().color;
     }
 
     public IEnumerator FadeOut(float time)
@@ -46,9 +46,7 @@ public class Fader : MonoBehaviour
 
     public IEnumerator TransitionToScene(int sceneIndex, float time)
     {
-        //print("pourquoi");
         yield return FadeOut(time);
-        //print("puteuuuuuuuuuuuuuuuuuuuuuuuuuuh");
         yield return SceneManager.LoadSceneAsync(sceneIndex);
         yield return FadeIn(time);
     }
