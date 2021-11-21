@@ -32,6 +32,8 @@ public class GolfBallScript : MonoBehaviour
 
     int time;
 
+    public Vector3 spawn;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -77,16 +79,19 @@ public class GolfBallScript : MonoBehaviour
 
     private void Putting()
     {
+        spawn = transform.position;
         if ((int)currentTime > 5)
         {
             currentTime = 5;
         }
         rb.AddForce(camera.transform.forward.normalized * force * ((int)currentTime + 1));
+        
     }
 
     public void Die()
     {
-        FindObjectOfType<StartManager>().StartPlayerRespawn();
+        
+        FindObjectOfType<StartManager>().StartPlayerRespawn(spawn);
         Destroy(gameObject);
     }
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Camera
   - Floor
+  - Mult
   layers:
   - Default
   - TransparentFX

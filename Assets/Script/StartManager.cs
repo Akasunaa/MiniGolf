@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartManager : MonoBehaviour
 {
-    private Vector3 spawn = new Vector3(0, 0, 0);
+    
     [SerializeField] GameObject Player;
     private GameObject floor;
     private float yFloor;
@@ -14,19 +14,20 @@ public class StartManager : MonoBehaviour
 
     private void Start()
     {
-        //GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        GameObject Player = GameObject.FindGameObjectWithTag("Player");
         //if (!Player) return; 
-        spawn = transform.position;
-        floor= GameObject.FindGameObjectWithTag("Floor");
+        //spawn = transform.position;
+
+        floor = GameObject.FindGameObjectWithTag("Floor");
         yFloor = floor.transform.position.y;
     }
 
     
 
-    private IEnumerator RespawnPlayer()
+    private IEnumerator RespawnPlayer(Vector3 spawn)
     {
         print("respawwwn");
-
+        print(spawn);
         Fader fader = FindObjectOfType<Fader>();
         yield return fader.FadeOut(time);
         Instantiate(Player, spawn, Quaternion.identity);
@@ -36,9 +37,9 @@ public class StartManager : MonoBehaviour
     }
 
 
-    public void StartPlayerRespawn()
+    public void StartPlayerRespawn(Vector3 spawn)
     {
-        StartCoroutine(RespawnPlayer());
+        StartCoroutine(RespawnPlayer(spawn));
     }
 }
 
