@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-    using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class GolfBallScript : MonoBehaviour
@@ -32,6 +33,11 @@ public class GolfBallScript : MonoBehaviour
 
     int time;
 
+    //SCORE
+    private GameObject scoretext;
+    private GameObject leveltext;
+    private int Score = 0;
+
     public Vector3 spawn;
 
     private void Awake()
@@ -46,6 +52,12 @@ public class GolfBallScript : MonoBehaviour
         //multtext = canva.transform.GetChild(1);
         multtext = GameObject.FindGameObjectWithTag("Mult");
         multtext.GetComponent<TMPro.TextMeshProUGUI>().text = "x0";
+
+        scoretext = GameObject.FindGameObjectWithTag("Score");
+        scoretext.GetComponent<TMPro.TextMeshProUGUI>().text = "0";
+
+        leveltext = GameObject.FindGameObjectWithTag("CurrentLevel");
+        leveltext.GetComponent<TMPro.TextMeshProUGUI>().text = SceneManager.GetActiveScene().name;
         time = 0;
         
 
@@ -85,7 +97,9 @@ public class GolfBallScript : MonoBehaviour
             currentTime = 5;
         }
         rb.AddForce(camera.transform.forward.normalized * force * ((int)currentTime + 1));
-        
+        Score += 1;
+        scoretext.GetComponent<TMPro.TextMeshProUGUI>().text = Score.ToString();
+
     }
 
     public void Die()
