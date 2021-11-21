@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TranslationMovement : MonoBehaviour
 {
-    [SerializeField] private Vector2 direction;
+    [SerializeField] private Vector3 direction;
     private float moveSpeed = 2f;
     [SerializeField] private float waitTime;
     [SerializeField] private float moveTime;
